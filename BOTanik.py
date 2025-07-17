@@ -50,3 +50,6 @@ async def webhook(request: Request):
     update = Update.de_json(data, telegram_app.bot)
     await telegram_app.process_update(update)
     return {"ok": True}
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("BOTanik:app", host="0.0.0.0", port=8000)
