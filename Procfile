@@ -1,1 +1,1 @@
-web: uvicorn ASKTFeedbackBot:app --host=0.0.0.0 --port=8080
+web: uvicorn BOTanik:app --host=0.0.0.0 --port=8000
