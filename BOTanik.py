@@ -11,13 +11,6 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Telegram-приложение
 app = FastAPI()
 telegram_app = Application.builder().token(BOT_TOKEN).build()
-<<<<<<< HEAD
-@app.on_event("startup")
-async def startup():
-    await telegram_app.initialize()
-=======
->>>>>>> ca3433bb7cefd80ebaaa94d5430f13f9cb7252da
-
 @app.on_event("startup")
 async def startup():
     await telegram_app.initialize()
