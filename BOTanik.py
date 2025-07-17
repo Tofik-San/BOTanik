@@ -11,6 +11,13 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Telegram-приложение
 app = FastAPI()
 telegram_app = Application.builder().token(BOT_TOKEN).build()
+@app.on_event("startup")
+async def startup():
+    await telegram_app.initialize()
+
+@app.on_event("startup")
+async def startup():
+    await telegram_app.initialize()
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 # GPT-обработка текста
@@ -45,6 +52,5 @@ telegram_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_
 async def webhook(request: Request):
     data = await request.json()
     update = Update.de_json(data, telegram_app.bot)
-    await telegram_app.initialize()
     await telegram_app.process_update(update)
     return {"ok": True}
