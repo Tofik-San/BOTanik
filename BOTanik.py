@@ -41,7 +41,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 telegram_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
 # FastAPI — вебхук
-@app.post("/")
+@app.post("/webhook")
 async def webhook(request: Request):
     data = await request.json()
     update = Update.de_json(data, telegram_app.bot)
