@@ -11,6 +11,10 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Telegram-приложение
 app = FastAPI()
 telegram_app = Application.builder().token(BOT_TOKEN).build()
+
+@app.on_event("startup")
+async def startup():
+    await telegram_app.initialize()
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 # GPT-обработка текста
